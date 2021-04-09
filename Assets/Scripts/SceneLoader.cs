@@ -1,0 +1,25 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Networking;
+
+public class SceneLoader : MonoBehaviour
+{
+    [SerializeField] TextAsset[] scenes;
+
+
+    public string GetRandomScene()
+    {
+        int index = Random.Range(0, scenes.Length);
+        return GetSceneFromIndex(index);
+    }
+
+    public string GetSceneFromIndex(int index)
+    {
+        if (index < 0 || index >= scenes.Length)
+            return "INVALID SCENE";
+
+        return scenes[index].text;
+    }
+
+}

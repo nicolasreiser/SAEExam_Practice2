@@ -299,6 +299,56 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1516145895
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1516145896}
+  - component: {fileID: 1516145897}
+  m_Layer: 0
+  m_Name: SceneLoader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1516145896
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1516145895}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1516145897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1516145895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60a06859e2d5d664692b3221d652856f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scenes:
+  - {fileID: 4900000, guid: 28b1ce9038a772d45b825bf2f4af5c91, type: 3}
+  - {fileID: 4900000, guid: 7b7ce41845c7b1e4488290814b74f314, type: 3}
+  - {fileID: 4900000, guid: 3ea058adfabc5ba4bbbadd32ff8faafc, type: 3}
+  - {fileID: 4900000, guid: 1e64fef880ac26142b1244e4cb6e3817, type: 3}
+  - {fileID: 4900000, guid: 93a0567b0b8a0004bba16e789699e163, type: 3}
+  - {fileID: 4900000, guid: d78e6705e33e340409e6c9231f70db82, type: 3}
 --- !u!1 &1653174800
 GameObject:
   m_ObjectHideFlags: 0
@@ -458,26 +508,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5189964757847594553, guid: c7339515f561d6f4b8f7b523d1a04cb0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5189964759506785765, guid: c7339515f561d6f4b8f7b523d1a04cb0, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5189964759506785765, guid: c7339515f561d6f4b8f7b523d1a04cb0, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5189964759506785765, guid: c7339515f561d6f4b8f7b523d1a04cb0, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 540
-      objectReference: {fileID: 0}
-    - target: {fileID: 5189964759506785766, guid: c7339515f561d6f4b8f7b523d1a04cb0, type: 3}
-      propertyPath: m_fontSize
-      value: 36
-      objectReference: {fileID: 0}
-    - target: {fileID: 5189964759506785766, guid: c7339515f561d6f4b8f7b523d1a04cb0, type: 3}
-      propertyPath: m_enableAutoSizing
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
