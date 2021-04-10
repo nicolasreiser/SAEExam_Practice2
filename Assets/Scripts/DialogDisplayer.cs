@@ -4,12 +4,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using System.IO;
 
 public enum Interlocutor
 {
     None,
     Character1,
     Character2
+}
+public enum Images
+{
+    joker,
+    joker_mom
 }
 
 public class DialogDisplayer : MonoBehaviour
@@ -33,6 +39,17 @@ public class DialogDisplayer : MonoBehaviour
         SetInterlocutor(Interlocutor.None);
         SetText("");
 
+    }
+    public void SetImage(Images image)
+    {
+        if(image == Images.joker)
+        {
+            byte[] path = File.ReadAllBytes(Application.dataPath + "/Sprites/" + "/Characters/" + image.ToString() + ".jpg");
+
+            Texture2D tex = new Texture2D(2,2);
+            tex.LoadImage(path);
+            p1Image.sprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0, 0), 100);
+        }
     }
 
     public void SetText(string text)

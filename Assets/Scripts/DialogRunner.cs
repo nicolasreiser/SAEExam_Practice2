@@ -1,22 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+using System.IO;
 
+public enum Scenes
+{
+    Scene1,
+    Scene2,
+    Scene3,
+    Scene4,
+    Scene7,
+    Scene9
+}
 public class DialogRunner : MonoBehaviour
 {
     [SerializeField] DialogDisplayer dialogDisplayer;
 
+    //task 2
     private bool continueScript;
 
+    //task 3
     Queue<Speech> sentences;
-
     public SpeechList speechList;
+
+    //task 4
+    public Scenes sceneToPlay;
+    List<string> fileLines;
+    int currentLine;
 
     private void Start()
     {
+        currentLine = 0;
         sentences = new Queue<Speech>();
         continueScript = false;
-        dialogDisplayer.continueEvent.AddListener(DisplayNextSentence);
+        LoadScriptFromFile(sceneToPlay);
+        //dialogDisplayer.continueEvent.AddListener(DisplayNextSentence);
+        dialogDisplayer.continueEvent.AddListener(DisplayNextLine);
         StartDialogue(speechList);
 
         //StartCoroutine(DialogRoutineTest());
@@ -27,6 +47,12 @@ public class DialogRunner : MonoBehaviour
         continueScript = true;
     }
 
+    private void LoadScriptFromFile( Scenes SceneName)
+    {
+        string readFrimFilePath = Application.dataPath + "/Resources/" + "/Joker/" + SceneName.ToString() + ".txt";
+
+        fileLines = File.ReadAllLines(readFrimFilePath).ToList();
+    }
     private void StartDialogue( SpeechList speechList)
     {
 
@@ -37,7 +63,62 @@ public class DialogRunner : MonoBehaviour
             sentences.Enqueue(s);
         }
     }
+    public void DisplayNextLine()
+    {
+        
+        if (fileLines[currentLine].Contains("<b>"))
+        {
+            // its the name of a character
+            if(fileLines[currentLine].Contains("JOKER"))
+            {
+                dialogDisplayer.SetInterlocutor(Interlocutor.Character1);
+                dialogDisplayer.SetImage(Images.joker);
+                dialogDisplayer.SetName(fileLines[currentLine]);
+            }
+            else if (fileLines[currentLine].Contains("SOCIAL WORKER") ||
+                fileLines[currentLine].Contains("KID") ||
+                fileLines[currentLine].Contains("WOMAN") ||
+                fileLines[currentLine].Contains("SOPHIE") ||
+                fileLines[currentLine].Contains("MOM"))
+            {
+                dialogDisplayer.SetImage(Images.joker_mom);
 
+                dialogDisplayer.SetInterlocutor(Interlocutor.Character2);
+                dialogDisplayer.SetName(fileLines[currentLine]);
+            }
+            else
+            {
+                dialogDisplayer.SetInterlocutor(Interlocutor.None);
+            }
+            currentLine++;
+
+            string text = "";
+
+            while(!fileLines[currentLine].Equals(""))
+            {
+                text += fileLines[currentLine] + "\n";
+                currentLine++;
+            }
+            
+            dialogDisplayer.SetText(text);
+            currentLine++;
+        }
+        else
+        {
+            dialogDisplayer.SetInterlocutor(Interlocutor.None);
+
+            string text = "";
+
+            while (!fileLines[currentLine].Equals(""))
+            {
+                text += fileLines[currentLine] + "\n";
+                currentLine++;
+            }
+
+            dialogDisplayer.SetText(text);
+            currentLine++;
+        }
+    }
     public void DisplayNextSentence()
     {
         if(sentences.Count == 0)
