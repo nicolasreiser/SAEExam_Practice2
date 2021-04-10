@@ -19,7 +19,7 @@ public class DialogDisplayer : MonoBehaviour
 
     private Interlocutor interlocutor = (Interlocutor)(-1);
 
-    UnityEvent continueEvent;
+    public UnityEvent continueEvent;
 
     private void Start()
     {
