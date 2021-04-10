@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public enum Interlocutor
 {
@@ -18,11 +19,20 @@ public class DialogDisplayer : MonoBehaviour
 
     private Interlocutor interlocutor = (Interlocutor)(-1);
 
+    UnityEvent continueEvent;
 
     private void Start()
     {
+
+        if(continueEvent == null)
+        {
+            continueEvent = new UnityEvent();
+        }
+
+
         SetInterlocutor(Interlocutor.None);
         SetText("");
+
     }
 
     public void SetText(string text)
@@ -90,5 +100,11 @@ public class DialogDisplayer : MonoBehaviour
                 descriptionText.enabled = false;
                 break;
         }
+    }
+
+    public void CallContinueEvents()
+    {
+        continueEvent.Invoke();
+        Debug.Log("Continue Event Called");
     }
 }
