@@ -8,20 +8,51 @@ public class DialogRunner : MonoBehaviour
 
     private bool continueScript;
 
+    Queue<Speech> sentences;
+
+    public SpeechList speechList;
+
     private void Start()
     {
+        sentences = new Queue<Speech>();
         continueScript = false;
-        dialogDisplayer.continueEvent.AddListener(processScript);
-        StartCoroutine(DialogRoutineTest());
+        dialogDisplayer.continueEvent.AddListener(DisplayNextSentence);
+        StartDialogue(speechList);
+
+        //StartCoroutine(DialogRoutineTest());
     }
 
     private void processScript()
     {
         continueScript = true;
-        Debug.Log("Continue Script set to true");
     }
 
+    private void StartDialogue( SpeechList speechList)
+    {
 
+        sentences.Clear();
+        
+        foreach(Speech s in speechList.Speeches )
+        {
+            sentences.Enqueue(s);
+        }
+    }
+
+    public void DisplayNextSentence()
+    {
+        if(sentences.Count == 0)
+        {
+            EndDialogue();
+        }
+
+        Speech speech = sentences.Dequeue();
+        dialogDisplayer.SetInterlocutor(speech.interlocutor);
+        dialogDisplayer.SetText(speech.script);
+    }
+    private void EndDialogue()
+    {
+        Debug.Log("Conversation finished");
+    }
     private IEnumerator DialogRoutineTest()
     {
         yield return new WaitUntil( () => continueScript == true);
