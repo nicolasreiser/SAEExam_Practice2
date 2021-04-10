@@ -799,5 +799,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8993774066084644388, guid: c7339515f561d6f4b8f7b523d1a04cb0, type: 3}
+      propertyPath: speechList
+      value: 
+      objectReference: {fileID: 2101463608}
+    - target: {fileID: 8993774066084644388, guid: c7339515f561d6f4b8f7b523d1a04cb0, type: 3}
+      propertyPath: sceneToPlay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8993774066084644388, guid: c7339515f561d6f4b8f7b523d1a04cb0, type: 3}
+      propertyPath: speech.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7339515f561d6f4b8f7b523d1a04cb0, type: 3}

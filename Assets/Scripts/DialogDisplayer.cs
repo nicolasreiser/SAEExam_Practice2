@@ -50,6 +50,14 @@ public class DialogDisplayer : MonoBehaviour
             tex.LoadImage(path);
             p1Image.sprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0, 0), 100);
         }
+        else
+        {
+            byte[] path = File.ReadAllBytes(Application.dataPath + "/Sprites/" + "/Characters/" + image.ToString() + ".png");
+
+            Texture2D tex = new Texture2D(2, 2);
+            tex.LoadImage(path);
+            p2Image.sprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0, 0), 100);
+        }
     }
 
     public void SetText(string text)
